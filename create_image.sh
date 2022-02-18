@@ -4,16 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-# Set magic variables for current file & dir
-__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-__file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
-__base="$(basename ${__file} .sh)"
-__root="$(cd "$(dirname "${__dir}")" && pwd)" # <-- change this as it depends on your app
-
-arg1="${1:-}"
-
 function do_help() {
-
 cat <<EOF
 
 usage: $(basename $0) [-h] [-z <zfs>] [-v <version>] -f <file name> -n <image name>
@@ -27,7 +18,6 @@ options:
 	-h		: Display this help message
 
 EOF
-
 }
 
 while getopts ":hz:n:t:" opt
