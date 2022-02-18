@@ -20,9 +20,9 @@ Build a windows image for Bhyve use on SmartOS
 ```
 ./initialize.sh -w <windows iso> -v <virtio iso>
 ```
-* connect with VNC to the vm (vnc://<golbalzone>:<port>) default the script uses vnc port 5900
+* connect with VNC to the vm (vnc://\<golbalzone\>:\<port\>) default the script uses vnc port 5900
 * the vm waits for booting until vnc connection is established. press a key to boot form the cdrom
-* load virtio drivers from the driver disk under /amd64/<winversion>
+* load virtio drivers from the driver disk under /amd64/\<winversion\>
 * continue installation
 
 * when installer reboots you need to start the vm again with the ./restart.sh script
