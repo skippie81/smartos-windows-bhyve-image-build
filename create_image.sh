@@ -7,7 +7,7 @@ set -o nounset
 function do_help() {
 cat <<EOF
 
-usage: $(basename $0) [-h] [-z <zfs>] [-v <version>] -f <file name> -n <image name>
+usage: $(basename $0) [-h] [-z <zfs>] [-v <version>] -t <file name> -n <image name>
 
 required options:
 	-t <name>	: name of the target zvol file and json manifest file for image
@@ -20,7 +20,7 @@ options:
 EOF
 }
 
-while getopts ":hz:n:t:" opt
+while getopts ":hz:n:t:v:" opt
 do
   case ${opt} in
     h ) do_help
@@ -54,7 +54,7 @@ zfs list "${_VM_ZPOOL}" 2> /dev/null 1>&2 || ( echo "ZFS ${_VM_ZPOOL} does not e
 
 _TARGET_ZVOL_FILE="${TARGET}.zvol"
 _TARGET_JSON_FILE="${TARGET}.json"
-[[ ${TARGET} =~ \.zvol$ ]] && _TARGET_ZVOL_FILE="${TARGET}.zvol"
+[[ ${TARGET} =~ \.zvol$ ]] && _TARGET_ZVOL_FILE="${TARGET}"
 [[ ${TARGET} =~ \.zvol$ ]] && _TARGET_JSON_FILE="${TARGET/zvol$/json}"
 
 [ -f "${_TARGET_ZVOL_FILE}" ] && ( echo "Target ${_TARGET_ZVOL_FILE} already exists." 1>&2; exit 1)
