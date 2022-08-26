@@ -25,7 +25,7 @@ options:
 EOF
 }
 
-while getopts ":hs:c:m:d:a:b:j:i:" opt
+while getopts ":hs:c:m:d:a:b:j:i:n:" opt
 do
   case ${opt} in
     h ) do_help
