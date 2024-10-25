@@ -11,7 +11,7 @@ Build a windows image for Bhyve use on SmartOS
 ## Tested versions
 
 * Tested with Windows 10 x64
-* [Virtio 0.1.185](https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.185-2/) seems to work, newer releases seems to crash on formatting the disk in the windows installer
+* [Virtio 0.1.262](https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.262-2/) seems to work. ( Some versions between 0.1.185 and this verion crash when loading driver under bhyve)
 
 ## Create the image
 
@@ -20,6 +20,7 @@ Build a windows image for Bhyve use on SmartOS
 ```
 ./initialize.sh -w <windows iso> -v <virtio iso>
 ```
+
 * connect with VNC to the vm (vnc://\<golbalzone\>:\<port\>) default the script uses vnc port 5900
 * the vm waits for booting until vnc connection is established. press a key to boot form the cdrom
 * load virtio drivers from the driver disk under /amd64/\<winversion\>
@@ -36,11 +37,12 @@ Build a windows image for Bhyve use on SmartOS
 * the installer reboots start the vm again with the ./restart.sh script
 * now the installer logs you in as administrator do not close the audit popup window unti you finish as it will shutdown again
 * install the virtio drivers form the virtio driver cd by running the msi installer on the cd
+* optionally install the virtiou guest tools with the installer on the cd
 * close the installation by closing the audit popup
 
 * now create a zvol image and manifest for imgadm filename and image name are required
 ```
-./create_image.sh -f windows_imgage.zvol -n windows-10-pro
+./create_image.sh -t windows_imgage.zvol -n windows-10-pro
 ```
 * a zvol file and corresponding json image manifest is created
 
@@ -54,4 +56,4 @@ Build a windows image for Bhyve use on SmartOS
 ./install.sh -a win-10-pro -j windows.json
 ```
 
-Remark: If you use optional arguments in the initialize.sh script you should use the same parrameters in the next steps
+Important: If you use optional arguments in the initialize.sh script you should use the same parrameters in the next steps
