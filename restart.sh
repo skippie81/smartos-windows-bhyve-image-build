@@ -7,7 +7,7 @@ set -o nounset
 function do_help() {
 cat <<EOF
 
-usage: $(basename $0) [-h] [-b <bootrom>] [-c <cores>] [-m <memory size>] [-p <port>] [-d <type>] [-z <name>] [-n <name>]
+usage: $(basename $0) [-h] [-b <bootrom>] [-c <cores>] [-m <memory size>] [-p <port>] [-d <type>] [-z <name>] [-n <name>]
 
 options:
 	-b <bootrom>	: choose bootrom (choises: uefi,bios default: uefi)

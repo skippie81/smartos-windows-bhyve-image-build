@@ -7,12 +7,12 @@ set -o nounset
 function do_help() {
 cat <<EOF
 
-usage: $(basename $0) [-h] [-s <size>] [-b <bootrom>] [-c <cores>] [-m <memory size>] [-p <port>] [-d <type>] [-z <name>] [-n <name>]  -w <file> -v <file>
+usage: $(basename $0) [-h] [-s <size>] [-b <bootrom>] [-c <cores>] [-m <memory size>] [-p <port>] [-d <type>] [-z <name>] [-n <name>]  -w <file> [ -v <file> ]
 
 required options:
 	-w <file>	: Windows installation ISO file
-	-v <file>	: VirtIO drivers ISO file
 options:
+  -v <file>	: VirtIO drivers ISO file
 	-b <bootrom>	: choose bootrom (choises: uefi,bios default: uefi)
 	-s <size>	: Sysprep ZVOL size (default 80G) (input as xG)
 	-m <memory>	: Memory for the Installer VM (default 4G) (input as xG)
@@ -115,6 +115,7 @@ echo "Starting the vm ${_VM_NAME} connect to vnc://$(hostname):5900 to boot the 
 pfexec /usr/sbin/bhyve -c ${_CPU_CORES} -m ${_MEMORY} -H \
     -l com1,stdio \
     -l bootrom,${_BOOTROM_PATH} \
+    -s 0,hostbridge \
     -s 2,ahci-cd,${_WINDOWS_INSTALL_CD} \
     -s 3,${_DISK_DRIVER},/dev/zvol/rdsk/${_VM_ZPOOL} \
     -s 4,ahci-cd,${_VIRTIO_DRIVER_CD} \

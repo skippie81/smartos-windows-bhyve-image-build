@@ -7,7 +7,7 @@ set -o nounset
 function do_help() {
 cat <<EOF
 
-usage: $(basename $0) [-h] [-n <nictag>] [-s <size>] [-b <bootrom>] [-c <cores>] [-m <memory size>] [-d <type>] [-i <ip|dhcp>]-a <alias> -j <image manifest>
+usage: $(basename $0) [-h] [-n <nictag>] [-s <size>] [-b <bootrom>] [-c <cores>] [-m <memory size>] [-d <type>] [-i <ip|dhcp>] -a <alias> -j <image manifest>
 
 required options:
 	-a <alias>	: Alias of the vm to create
