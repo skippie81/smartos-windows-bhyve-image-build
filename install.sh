@@ -70,7 +70,7 @@ _IP=${IP:-"dhcp"}
 # input checks
 [ ${ALIAS:-""} == "" ] && ( echo "Alias is required input" 1>&2; exit 1 )
 [ ${MANIFEST:-""} == "" ] && ( echo "Manifest is required input" 1>&2; exit 1 )
-[ -f "${MANIFEST}" ] || ( echo "Alias is required input" 1>&2; exit 1 )
+[ -f "${MANIFEST}" ] || ( echo "Images manifest ${MANIFEST} does not exist" 1>&2; exit 1 )
 
 [[ "${_CPU_CORES}" =~ ^[0-9]+ && ${_CPU_CORES} -gt 0 ]] || ( echo "virtual core count must be an integer and at least 1" 1>&2; exit 1)
 [[ "${_MEMORY}" =~ ^[0-9]+G && ${_MEMORY//G/} -gt 1 && ${_MEMORY//G/} -lt 17 ]] || ( echo "Memory must be given in GB as xG and between 2G and 16G" 1>&2; exit 1)
