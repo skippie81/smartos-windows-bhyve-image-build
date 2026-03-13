@@ -13,6 +13,9 @@ Build a windows image for Bhyve use on SmartOS
 * Tested with Windows 10 x64
 * [Virtio 0.1.262](https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.262-2/) seems to work. ( Some versions between 0.1.185 and this verion crash when loading driver under bhyve)
 
+* Tested with Windows 11 x64 (with TPM and SecureBoot check bypassed)
+* [Virtio 0.1.285](https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.285-1/virtio-win-0.1.285.iso)
+
 ## Create the image
 
 * place de needed ISO files somewhere on you SmartOS global zone
@@ -35,9 +38,9 @@ Build a windows image for Bhyve use on SmartOS
 
 * when the installer starts asking questions you need to exit this and goto into audit mode by pressing ctrl + shift + F3
 * the installer reboots start the vm again with the ./restart.sh script
-* now the installer logs you in as administrator do not close the audit popup window unti you finish as it will shutdown again
+* now the installer logs you in as administrator do not close the audit popup window untill you finish as it will shutdown again
 * install the virtio drivers form the virtio driver cd by running the msi installer on the cd
-* optionally install the virtiou guest tools with the installer on the cd
+* optionally install the virtio guest tools with the installer on the cd
 * close the installation by closing the audit popup
 
 * now create a zvol image and manifest for imgadm filename and image name are required
