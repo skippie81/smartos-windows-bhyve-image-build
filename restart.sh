@@ -79,7 +79,7 @@ _BOOTROM_PATH="/usr/share/bhyve/uefi-rom.bin"
 [ "${_BOOTROM}" == "bios" ] && _BOOTROM_PATH="/usr/share/bhyve/uefi-csm-rom.bin"
 
 echo "Restarting vm ... connect to vnc://$(hostname):${_VNC_PORT}"
-echo "When insall starts asking questions press Ctrl + Shift + F3 and boot into admin mode to insall virtio.msi"
+echo "When installer starts asking questions press Ctrl + Shift + F3 and boot into admin mode to insall virtio.msi"
 echo "Then create the vm image using create_image.sh script"
 
 pfexec /usr/sbin/bhyve -c ${_CPU_CORES} -m ${_MEMORY} -H \
