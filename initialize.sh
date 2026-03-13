@@ -111,7 +111,7 @@ echo "done"
 _BOOTROM_PATH="/usr/share/bhyve/uefi-rom.bin"
 [ "${_BOOTROM}" == "bios" ] && _BOOTROM_PATH="/usr/share/bhyve/uefi-csm-rom.bin"
 
-echo "Starting the vm ${_VM_NAME} connect to vnc://$(hostname):5900 to boot the vm and start installation (disk driver ${_DISK_DRIVER})"
+echo "Starting the vm ${_VM_NAME} connect to vnc://$(hostname):${_VNC_PORT} to boot the vm and start installation (disk driver ${_DISK_DRIVER})"
 pfexec /usr/sbin/bhyve -c ${_CPU_CORES} -m ${_MEMORY} -H \
     -l com1,stdio \
     -l bootrom,${_BOOTROM_PATH} \
@@ -119,7 +119,7 @@ pfexec /usr/sbin/bhyve -c ${_CPU_CORES} -m ${_MEMORY} -H \
     -s 2,ahci-cd,${_WINDOWS_INSTALL_CD} \
     -s 3,${_DISK_DRIVER},/dev/zvol/rdsk/${_VM_ZPOOL} \
     -s 4,ahci-cd,${_VIRTIO_DRIVER_CD} \
-    -s 28,fbuf,vga=off,tcp=0.0.0.0:5900,w=1024,h=768,wait \
+    -s 28,fbuf,vga=off,tcp=0.0.0.0:${_VNC_PORT},w=1024,h=768,wait \
     -s 29,xhci,tablet \
     -s 31,lpc \
     ${_VM_NAME}
